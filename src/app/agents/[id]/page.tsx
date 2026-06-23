@@ -4,8 +4,23 @@ import { Mail, Phone, Star } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { PropertyGrid } from '@/components/PropertyGrid';
 import { agents, properties } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
 
-export default function AgentProfilePage({ params }: { params: { id: string } }) {
+type AgentProfilePageProps = {
+  params: { id: string };
+};
+
+export function generateMetadata({ params }: AgentProfilePageProps) {
+  const agent = agents.find((item) => item.id === params.id);
+
+  if (!agent) {
+    return pageMetadata('Agent Not Found');
+  }
+
+  return pageMetadata(agent.name, `${agent.name} is a ${agent.specialty} at JustHome.`);
+}
+
+export default function AgentProfilePage({ params }: AgentProfilePageProps) {
   const agent = agents.find((item) => item.id === params.id);
   if (!agent) notFound();
   const listings = properties.filter((property) => property.agentId === agent.id);
