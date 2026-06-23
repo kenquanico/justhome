@@ -5,8 +5,23 @@ import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 import { PageHeader } from '@/components/PageHeader';
 import { PropertyExplorer } from '@/components/PropertyExplorer';
 import { locations } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
 
-export default function LocationPage({ params }: { params: { city: string } }) {
+type LocationPageProps = {
+  params: { city: string };
+};
+
+export function generateMetadata({ params }: LocationPageProps) {
+  const location = locations.find((item) => item.slug === params.city);
+
+  if (!location) {
+    return pageMetadata('Location Not Found');
+  }
+
+  return pageMetadata(`Homes in ${location.city}`, location.description);
+}
+
+export default function LocationPage({ params }: LocationPageProps) {
   const location = locations.find((item) => item.slug === params.city);
   if (!location) notFound();
 

@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { locations } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata(
+  'Locations',
+  'Explore popular UAE communities and discover homes by location with JustHome.'
+);
 
 export default function LocationsPage() {
   return (

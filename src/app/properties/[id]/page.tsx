@@ -5,8 +5,23 @@ import { Bath, BedDouble, Car, Check, Home, Mail, MapPin, Ruler, Star } from 'lu
 import { PropertyGrid } from '@/components/PropertyGrid';
 import { ScheduleTourModal } from '@/components/ScheduleTourModal';
 import { agents, properties } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
 
-export default function PropertyDetailPage({ params }: { params: { id: string } }) {
+type PropertyDetailPageProps = {
+  params: { id: string };
+};
+
+export function generateMetadata({ params }: PropertyDetailPageProps) {
+  const property = properties.find((item) => item.id === params.id);
+
+  if (!property) {
+    return pageMetadata('Property Not Found');
+  }
+
+  return pageMetadata(property.title, `${property.price} ${property.listingType.toLowerCase()} listing in ${property.location}.`);
+}
+
+export default function PropertyDetailPage({ params }: PropertyDetailPageProps) {
   const property = properties.find((item) => item.id === params.id);
   if (!property) notFound();
   const agent = agents.find((item) => item.id === property.agentId) ?? agents[0];

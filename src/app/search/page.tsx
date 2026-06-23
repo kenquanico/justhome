@@ -2,6 +2,12 @@ import { Suspense } from 'react';
 import { PageHeader } from '@/components/PageHeader';
 import { SearchResults } from '@/components/SearchResults';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata(
+  'Search',
+  'Search JustHome listings, agents, and UAE communities.'
+);
 
 export default function SearchPage() {
   return (

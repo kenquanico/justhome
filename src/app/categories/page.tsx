@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { categories } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata(
+  'Categories',
+  'Browse JustHome listings by apartments, villas, town houses, penthouses, commercial spaces, and luxury homes.'
+);
 
 export default function CategoriesPage() {
   return (
