@@ -1,8 +1,23 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import { footerLinks } from '@/data/home';
 
 const socials = [Facebook, Instagram, Twitter, Linkedin];
+const footerHrefByLabel: Record<string, string> = {
+  'Buy a Home': '/properties?type=Buy',
+  'Rent a Home': '/properties?type=Rent',
+  Commercial: '/categories/commercial',
+  'New Projects': '/new-projects',
+  'About JustHome': '/about',
+  'Our Agents': '/agents',
+  Blog: '/blog',
+  Contact: '/contact',
+  'Help Center': '/help',
+  'Mortgage Guide': '/mortgage-guide',
+  'Privacy Policy': '/privacy',
+  Terms: '/terms',
+};
 
 export function Footer() {
   return (
@@ -10,7 +25,7 @@ export function Footer() {
       <div className="section-shell">
         <div className="grid gap-10 border-t border-slate-100 py-12 lg:grid-cols-[1.2fr_1.8fr]">
           <div>
-            <a href="#" className="inline-flex items-center">
+            <Link href="/" className="inline-flex items-center">
               <Image
                 src="/justhome.svg"
                 alt="JustHome"
@@ -18,7 +33,7 @@ export function Footer() {
                 height={43}
                 className="h-10 w-auto"
               />
-            </a>
+            </Link>
             <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500">
               Premium property discovery for UAE buyers, renters, sellers, and investors.
             </p>
@@ -45,9 +60,9 @@ export function Footer() {
                 <ul className="mt-4 grid gap-3">
                   {links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="text-sm text-slate-500 transition hover:text-pine">
+                      <Link href={footerHrefByLabel[link]} className="text-sm text-slate-500 transition hover:text-pine">
                         {link}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
