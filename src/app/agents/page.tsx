@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { Linkedin, Star } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { agents } from '@/lib/data';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata(
+  'Agents',
+  'Meet JustHome property advisors across Dubai and the UAE.'
+);
 
 export default function AgentsPage() {
   return (
@@ -27,6 +33,9 @@ export default function AgentsPage() {
                   <span>{agent.listingCount} listings</span>
                   <span className="flex items-center gap-2 text-pine"><Linkedin className="h-4 w-4" />{agent.social}</span>
                 </div>
+                <span className="mt-5 inline-flex rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition group-hover:bg-pine">
+                  View Profile
+                </span>
               </div>
             </Link>
           ))}
