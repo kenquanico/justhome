@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { Home } from 'lucide-react';
+import { pageMetadata } from '@/lib/metadata';
+
+export const metadata = pageMetadata('Page Not Found');
 
 export default function NotFound() {
   return (
